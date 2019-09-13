@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-import PeopleCard from "./PeopleCard"
+import { PeopleCard, CardContainer} from "./PeopleCard"
 
 
 const PeopleInfo = () => {
