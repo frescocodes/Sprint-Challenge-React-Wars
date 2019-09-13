@@ -4,15 +4,16 @@ import PeopleCard from "./PeopleCard"
 
 
 const PeopleInfo = () => {
-    const [ data, setData ] = useState('');
-    const [ items, setItems ] = useState('')
+    const [ data, setData ] = useState([]);
+    // const [ items, setItems ] = useState('')
 
     useEffect(() => {
         axios.get('https://swapi.co/api/people')
         .then(response => {
             console.log(response)
-            const people = response.data;
-            setData(people)
+            const info = response.data.results;
+            setData(info);
+            
         })
         .catch(error => {
             console.log('broken =>', error)
@@ -20,8 +21,21 @@ const PeopleInfo = () => {
     }, []) 
 
     return (
-    <PeopleCard />
-    )
-}
+        // <PeopleCard />
+        data.map((character, i) => {
+            return (
+                <PeopleCard 
+                key={i}
+                name={character.name}
+                height={character.height}
+                mass={character.mass}
+                films={character.films}
+                />
+
+            )
+            
+        })
+    ) // end return
+} // end PeopleInfo
 
 export default PeopleInfo
